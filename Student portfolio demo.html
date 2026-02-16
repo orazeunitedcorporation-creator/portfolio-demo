@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ravi Kumar — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1208;
+    --gold: #C9962A;
+    --gold-light: #E8C96A;
+    --rust: #B84A2F;
+    --sage: #5A7A5E;
+    --mid: #6B6050;
+    --border: rgba(26,18,8,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* ─── HEADER / HERO ─── */
+  header {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0 5vw;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mid);
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-badge {
+    background: var(--gold);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* HERO CONTENT */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    padding: 5rem 0 4rem;
+    gap: 3rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .hero-text {}
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 900;
+    line-height: 0.93;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--mid);
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+  /* PHOTO CARD */
+  .hero-photo {
+    width: 280px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #D4C4A0, #B8A87A);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-frame .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .avatar-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar-circle svg { opacity: 0.7; }
+
+  .avatar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+  }
+
+  .photo-accent {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .photo-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 1px;
+    background: var(--border);
+  }
+
+  .stat {
+    background: var(--cream);
+    padding: 0.85rem 1rem;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 0.25rem;
+  }
+
+  /* HERO FOOTER BAR */
+  .hero-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .hero-footer-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+  }
+
+  .skills-ticker {
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+  }
+
+  .skill-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--mid);
+    white-space: nowrap;
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section {
+    padding: 6rem 5vw;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: baseline;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-top: 1px solid var(--border);
+    padding-top: 0.5rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .about-text p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .quote-block blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .about-details {}
+
+  .detail-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .detail-card-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.75rem 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .detail-card-body {
+    padding: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .detail-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .detail-key { color: var(--mid); font-weight: 300; }
+  .detail-val { font-weight: 500; color: var(--ink); text-align: right; }
+
+  /* ─── EDUCATION ─── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.35rem;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    outline: 1px solid var(--gold);
+  }
+
+  .timeline-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--rust);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-inst {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-degree {
+    font-size: 0.95rem;
+    color: var(--mid);
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .grade-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(201,150,42,0.1);
+    border: 1px solid rgba(201,150,42,0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+  }
+
+  .grade-badge span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .grade-badge strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
+
+  /* ─── SKILLS ─── */
+  #skills .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .skill-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26,18,8,0.08);
+  }
+
+  .skill-cat-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-cat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .skill-cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .skill-cat-body {
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .skill-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .skill-name {
+    font-size: 0.82rem;
+    color: var(--ink);
+    width: 110px;
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+
+  .skill-bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(26,18,8,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    animation: barFill 1.2s ease both;
+    transform-origin: left;
+  }
+
+  @keyframes barFill {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .skill-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--mid);
+    width: 30px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(26,18,8,0.1);
+  }
+
+  .project-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .project-thumb {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card:first-child .project-thumb {
+    height: 260px;
+  }
+
+  .project-thumb-inner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-thumb-emoji {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-thumb-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .project-body {
+    padding: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    color: var(--cream);
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--mid);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .project-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .project-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ─── CERTIFICATIONS ─── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .cert-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+  }
+
+  .cert-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .cert-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,18,8,0.08); }
+  .cert-card:hover::after { transform: scaleX(1); }
+
+  .cert-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .cert-issuer {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.35rem;
+  }
+
+  .cert-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .cert-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  .exp-list {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .exp-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: transform 0.3s;
+  }
+
+  .exp-card:hover { transform: translateX(6px); }
+
+  .exp-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .exp-body {}
+
+  .exp-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .exp-company {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid rgba(201,150,42,0.3);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .exp-role {
+    font-size: 0.9rem;
+    color: var(--rust);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--mid);
+    font-weight: 300;
+  }
+
+  .exp-skills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .exp-skill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--mid);
+    text-transform: uppercase;
+  }
+
+  /* ─── ACHIEVEMENTS ─── */
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .ach-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ach-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(26,18,8,0.09); }
+
+  .ach-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+
+  .ach-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .ach-desc {
+    font-size: 0.8rem;
+    color: var(--mid);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .ach-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-top: 0.75rem;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--ink);
+    color: var(--cream);
+    border-bottom: none;
+  }
+
+  #contact .section-title { color: var(--cream); border-top-color: rgba(245,240,232,0.15); }
+  #contact .section-num { color: var(--gold-light); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-intro {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .contact-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(245,240,232,0.12);
+    border-radius: 4px;
+    transition: border-color 0.25s, background 0.25s;
+    color: var(--cream);
+  }
+
+  .contact-link:hover {
+    border-color: var(--gold);
+    background: rgba(201,150,42,0.08);
+  }
+
+  .contact-link-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background: rgba(245,240,232,0.08);
+    flex-shrink: 0;
+  }
+
+  .contact-link-info {}
+
+  .contact-link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-link-val {
+    font-size: 0.9rem;
+    color: var(--cream);
+  }
+
+  .contact-form-side {}
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background: rgba(245,240,232,0.05);
+    border: 1px solid rgba(245,240,232,0.12);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.25s;
+  }
+
+  .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(245,240,232,0.25); }
+
+  .form-submit {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    font-weight: 500;
+  }
+
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(245,240,232,0.08);
+    padding: 2rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.3);
+    text-align: center;
+  }
+
+  .footer-note a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .footer-scroll {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: none;
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 999;
+    transition: width 0.1s;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── WATERMARK DEMO ─── */
+  .demo-banner {
+    background: var(--rust);
+    color: white;
+    text-align: center;
+    padding: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-photo { width: 100%; max-width: 300px; }
+    #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    #skills .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid .project-card:first-child { grid-column: 1; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+    .ach-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollBar"></div>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">⬛ Demo Portfolio — Oraze United Corporation LLP — Your Name Here</div>
+
+<!-- HEADER / HERO -->
+<header>
+  <nav class="nav">
+    <div class="nav-logo">RK / Portfolio 2024</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="nav-badge">Open to Work</span>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Electrical Engineering · Class of 2024</div>
+      <h1 class="hero-name">Ravi<br><em>Kumar</em></h1>
+      <p class="hero-desc">Final-year Electrical Engineering student specialising in power systems, embedded systems, and industrial automation. Passionate about building smarter, more efficient electrical infrastructure for India's energy future.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <div class="avatar-placeholder">
+          <div class="avatar-circle">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4" fill="white"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="avatar-label">Profile Photo</span>
+        </div>
+      </div>
+      <div class="photo-accent"></div>
+      <div class="photo-stats">
+        <div class="stat">
+          <div class="stat-val">8.9</div>
+          <div class="stat-label">CGPA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">12+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">3</div>
+          <div class="stat-label">Internships</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">6</div>
+          <div class="stat-label">Certs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-footer">
+    <div class="hero-footer-info">📍 Chennai, Tamil Nadu &nbsp;·&nbsp; Available June 2024</div>
+    <div class="skills-ticker">
+      <span class="skill-pill">Power Systems</span>
+      <span class="skill-pill">MATLAB / Simulink</span>
+      <span class="skill-pill">Embedded C</span>
+      <span class="skill-pill">PLC / SCADA</span>
+      <span class="skill-pill">Circuit Design</span>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-num">01 / About</span>
+    <h2 class="section-title">Who I Am</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm <strong>Ravi Kumar</strong>, a final-year Electrical Engineering student at Anna University, Chennai. I specialise in power systems, renewable energy integration, and embedded control systems — driven by a belief that reliable electrical infrastructure is the backbone of a developing nation.</p>
+      <div class="quote-block">
+        <blockquote>"Every circuit I design is a conversation between electrons — and I make sure they say the right things."</blockquote>
+      </div>
+      <p>Over four years, I've built hands-on expertise in <strong>power electronics, PLC programming, MATLAB/Simulink modelling, and PCB design</strong>. My internships at TNEB and Siemens exposed me to real-world grid operations, industrial automation, and high-voltage testing environments.</p>
+      <p>Outside the lab, I lead my college's IEEE Student Branch, organise technical workshops for junior students, and have co-authored a paper on solar microgrid optimisation. I'm actively seeking full-time roles in power systems, automation, or energy management starting June 2024.</p>
+    </div>
+    <div class="about-details fade-in">
+      <div class="detail-card">
+        <div class="detail-card-header">Personal Information</div>
+        <div class="detail-card-body">
+          <div class="detail-item">
+            <span class="detail-key">Full Name</span>
+            <span class="detail-val">Ravi Kumar</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Date of Birth</span>
+            <span class="detail-val">22 August 2002</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Location</span>
+            <span class="detail-val">Chennai, Tamil Nadu</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Languages</span>
+            <span class="detail-val">English, Tamil, Hindi</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Availability</span>
+            <span class="detail-val" style="color:var(--sage);font-weight:600;">June 2024 ✓</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-header">Career Objective</div>
+        <div class="detail-card-body">
+          <div class="detail-item">
+            <span class="detail-key">Role</span>
+            <span class="detail-val">Electrical / Automation Engineer</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Industry</span>
+            <span class="detail-val">Power / Energy / Manufacturing</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Work Mode</span>
+            <span class="detail-val">On-site / Hybrid</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-key">Open to Relocation</span>
+            <span class="detail-val">Yes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-in">
+    <span class="section-num">02 / Education</span>
+    <h2 class="section-title">Academic Journey</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item fade-in">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2020 – 2024</div>
+      <div class="timeline-inst">Anna University, Chennai</div>
+      <div class="timeline-degree">B.E. — Electrical & Electronics Engineering</div>
+      <div class="grade-badge">
+        <span>CGPA</span>
+        <strong>8.6 / 10</strong>
+      </div>
+      <p style="margin-top:1rem;font-size:0.88rem;color:var(--mid);font-weight:300;line-height:1.7;">
+        Relevant coursework: Power Systems Analysis, Control Systems, Power Electronics, Electrical Machines, Renewable Energy Systems, Microprocessors & Microcontrollers, High Voltage Engineering. Department Rank 3 — Semester 6. IEEE Student Branch President (2023–24).
+      </p>
+    </div>
+    <div class="timeline-item fade-in">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2018 – 2020</div>
+      <div class="timeline-inst">Sri Venkateshwara Higher Secondary School, Chennai</div>
+      <div class="timeline-degree">Class XII — Science with Physics, Chemistry & Maths (State Board)</div>
+      <div class="grade-badge">
+        <span>Score</span>
+        <strong>96.2%</strong>
+      </div>
+    </div>
+    <div class="timeline-item fade-in">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2016 – 2018</div>
+      <div class="timeline-inst">Sri Venkateshwara Higher Secondary School, Chennai</div>
+      <div class="timeline-degree">Class X — All Subjects (State Board)</div>
+      <div class="grade-badge">
+        <span>Score</span>
+        <strong>98.0%</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">03 / Skills</span>
+    <h2 class="section-title">Technical Arsenal</h2>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-category">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:#FFF8E1;">⚡</div>
+        <span class="skill-cat-name">Electrical Core</span>
+      </div>
+      <div class="skill-cat-body">
+        <div class="skill-bar-row">
+          <span class="skill-name">Power Systems</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:var(--gold);"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Circuit Design</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:var(--rust);"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Control Systems</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:var(--sage);"></div></div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Power Electronics</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%;background:var(--gold);"></div></div>
+          <span class="skill-pct">82%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">High Voltage Engg</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%;background:var(--mid);"></div></div>
+          <span class="skill-pct">75%</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:#E8F5E9;">🖥️</div>
+        <span class="skill-cat-name">Tools & Software</span>
+      </div>
+      <div class="skill-cat-body">
+        <div class="skill-bar-row">
+          <span class="skill-name">MATLAB/Simulink</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%;background:var(--gold);"></div></div>
+          <span class="skill-pct">92%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">AutoCAD Electrical</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;background:var(--sage);"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">ETAP</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%;background:var(--rust);"></div></div>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Proteus / LTspice</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:var(--gold);"></div></div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">PLC (Siemens S7)</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%;background:var(--mid);"></div></div>
+          <span class="skill-pct">78%</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:#E3F2FD;">🔧</div>
+        <span class="skill-cat-name">Embedded & Programming</span>
+      </div>
+      <div class="skill-cat-body">
+        <div class="skill-bar-row">
+          <span class="skill-name">Embedded C</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:var(--gold);"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Arduino / ESP32</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:var(--rust);"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Raspberry Pi</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;background:var(--sage);"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">Python (NumPy)</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%;background:var(--gold);"></div></div>
+          <span class="skill-pct">72%</span>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-name">PCB Design (KiCad)</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:76%;background:var(--mid);"></div></div>
+          <span class="skill-pct">76%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-in">
+    <span class="section-num">04 / Experience</span>
+    <h2 class="section-title">Work History</h2>
+  </div>
+  <div class="exp-list">
+    <div class="exp-card fade-in">
+      <div class="exp-logo" style="background:#FFF8E1;">🏭</div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <div class="exp-company">Siemens India Ltd.</div>
+          <div class="exp-period">May – Jul 2023</div>
+        </div>
+        <div class="exp-role">Electrical Engineering Intern — Industrial Automation Division</div>
+        <p class="exp-desc">Programmed Siemens S7-1200 PLCs for a conveyor control system on a live automotive assembly line. Designed and tested a SCADA interface using WinCC that reduced operator response time by 30%. Assisted in commissioning a 11kV substation switchgear panel and prepared single-line diagrams in AutoCAD Electrical.</p>
+        <div class="exp-skills">
+          <span class="exp-skill">PLC (S7-1200)</span>
+          <span class="exp-skill">SCADA / WinCC</span>
+          <span class="exp-skill">AutoCAD Electrical</span>
+          <span class="exp-skill">Ladder Logic</span>
+          <span class="exp-skill">HMI</span>
+        </div>
+      </div>
+    </div>
+    <div class="exp-card fade-in">
+      <div class="exp-logo" style="background:#E3F2FD;">⚡</div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <div class="exp-company">TNEB — Tamil Nadu Electricity Board</div>
+          <div class="exp-period">Dec 2022 – Jan 2023</div>
+        </div>
+        <div class="exp-role">Trainee Engineer — Power Systems & Grid Operations</div>
+        <p class="exp-desc">Observed and assisted in load flow analysis and fault detection across a 110/33 kV substation. Studied relay co-ordination protocols, earthing systems, and transformer maintenance schedules. Drafted a report on reactive power compensation improvements adopted by the department.</p>
+        <div class="exp-skills">
+          <span class="exp-skill">Load Flow Analysis</span>
+          <span class="exp-skill">Relay Coordination</span>
+          <span class="exp-skill">Substation Ops</span>
+          <span class="exp-skill">ETAP</span>
+        </div>
+      </div>
+    </div>
+    <div class="exp-card fade-in">
+      <div class="exp-logo" style="background:#E8F5E9;">🔆</div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <div class="exp-company">Anna University — IEEE Student Branch</div>
+          <div class="exp-period">Aug 2022 – Present</div>
+        </div>
+        <div class="exp-role">Branch President & Technical Lead</div>
+        <p class="exp-desc">Leading a 120-member IEEE student chapter. Organised 5 technical workshops on embedded systems, renewable energy, and PCB design. Represented Anna University at IEEE Region 10 Student Congress 2023 in Singapore. Mentored 20+ students in project work and placement preparation.</p>
+        <div class="exp-skills">
+          <span class="exp-skill">Leadership</span>
+          <span class="exp-skill">Event Management</span>
+          <span class="exp-skill">Technical Mentoring</span>
+          <span class="exp-skill">IEEE Standards</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">05 / Projects</span>
+    <h2 class="section-title">Selected Work</h2>
+  </div>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0D2137,#1A5276);">
+        <div class="project-thumb-inner">
+          <span class="project-thumb-emoji">☀️</span>
+          <span class="project-thumb-label">Renewable Energy</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag" style="background:var(--gold);">Capstone Project</span>
+          <span class="project-tag" style="background:var(--rust);">MATLAB/Simulink</span>
+        </div>
+        <div class="project-title">Smart Solar Microgrid with MPPT & Battery Management</div>
+        <p class="project-desc">Designed and simulated a 5 kW standalone solar microgrid with Perturb & Observe MPPT algorithm achieving 97.8% tracking efficiency. Integrated a bidirectional DC-DC converter for lead-acid battery management with SOC estimation. The system model was validated against real rooftop solar data from a residential installation in Chennai. Presented at the National Conference on Renewable Energy Systems (NCRES 2023).</p>
+        <a href="#" class="project-link">View Project Report →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1B2631,#2E4057);">
+        <div class="project-thumb-inner">
+          <span class="project-thumb-emoji">🤖</span>
+          <span class="project-thumb-label">Embedded Systems</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag" style="background:var(--sage);">IoT</span>
+        </div>
+        <div class="project-title">IoT-Based Smart Energy Meter</div>
+        <p class="project-desc">Built a real-time energy monitoring system using ESP32 + CT sensors that transmits live consumption data to a web dashboard via MQTT. Alerts users via SMS when usage exceeds preset thresholds. Deployed in college hostel block — saved 14% in electricity costs in the first month.</p>
+        <a href="#" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#4A2C0A,#C9692A);">
+        <div class="project-thumb-inner">
+          <span class="project-thumb-emoji">🏭</span>
+          <span class="project-thumb-label">Industrial Automation</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag" style="background:var(--rust);">PLC / SCADA</span>
+        </div>
+        <div class="project-title">Automated Water Level Control System</div>
+        <p class="project-desc">Programmed a PLC-based water level control using ladder logic with PID tuning for precise pump control. SCADA interface built in WinCC for remote monitoring. Demonstrated 99.2% uptime in a 72-hour continuous test at the Siemens lab.</p>
+        <a href="#" class="project-link">View Documentation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header fade-in">
+    <span class="section-num">06 / Certifications</span>
+    <h2 class="section-title">Credentials</h2>
+  </div>
+  <div class="certs-grid fade-in">
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#FFF8E1;">⚡</div>
+      <div class="cert-issuer">Siemens AG</div>
+      <div class="cert-name">SIMATIC S7 PLC Programming — Certified Practitioner</div>
+      <div class="cert-date">📅 August 2023 · Credential ID: SIE-PLC-78432</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#E3F2FD;">🎓</div>
+      <div class="cert-issuer">NPTEL / IIT Madras</div>
+      <div class="cert-name">Power Systems Analysis (Elite + Gold)</div>
+      <div class="cert-date">📅 April 2023 · Top 5% Nationwide</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#E8F5E9;">🌱</div>
+      <div class="cert-issuer">Coursera / Duke University</div>
+      <div class="cert-name">Renewable Energy & Green Building Entrepreneurship</div>
+      <div class="cert-date">📅 December 2022 · Grade: Distinction</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#F3E5F5;">🔌</div>
+      <div class="cert-issuer">NPTEL / IIT Kharagpur</div>
+      <div class="cert-name">Power Electronics (Elite Certificate)</div>
+      <div class="cert-date">📅 October 2022 · Score: 91%</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#FFF3E0;">🛡️</div>
+      <div class="cert-issuer">IEEE Xplore</div>
+      <div class="cert-name">IEEE Certified Electrical Safety Professional (CESP)</div>
+      <div class="cert-date">📅 June 2022 · IEEE Member No. 98234567</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#FCE4EC;">📐</div>
+      <div class="cert-issuer">Autodesk</div>
+      <div class="cert-name">AutoCAD Certified User — Electrical</div>
+      <div class="cert-date">📅 February 2022 · With Distinction</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header fade-in">
+    <span class="section-num">07 / Achievements</span>
+    <h2 class="section-title">Recognition</h2>
+  </div>
+  <div class="ach-grid fade-in">
+    <div class="ach-card" style="border-top:3px solid var(--gold);">
+      <div class="ach-icon">🥇</div>
+      <div class="ach-title">Smart India Hackathon</div>
+      <div class="ach-desc">National finalist for an IoT-based smart grid fault detection system — top 10 among 14,000+ teams.</div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-card" style="border-top:3px solid var(--rust);">
+      <div class="ach-icon">📰</div>
+      <div class="ach-title">IEEE Research Paper</div>
+      <div class="ach-desc">Co-authored "MPPT Optimisation in Solar Microgrids" published at IEEE ICPEC 2023 conference.</div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-card" style="border-top:3px solid var(--sage);">
+      <div class="ach-icon">🌏</div>
+      <div class="ach-title">IEEE Region 10 Congress</div>
+      <div class="ach-desc">Represented Anna University at the IEEE Region 10 Student Congress 2023 held in Singapore.</div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-card" style="border-top:3px solid var(--mid);">
+      <div class="ach-icon">⭐</div>
+      <div class="ach-title">Best Intern — Siemens</div>
+      <div class="ach-desc">Awarded Best Engineering Intern at Siemens India for exceptional PLC automation project delivery.</div>
+      <div class="ach-year">2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-in">
+    <span class="section-num">08 / Contact</span>
+    <h2 class="section-title">Let's Connect</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="fade-in">
+      <div class="contact-intro">"Engineering a brighter, smarter energy future — one circuit at a time."</div>
+      <p class="contact-desc">Whether you're a recruiter from the power sector, an industry professional, or a fellow engineer — I'd love to connect. I'm actively exploring full-time roles in power systems, industrial automation, and embedded engineering starting June 2024.</p>
+      <div class="contact-links">
+        <a href="mailto:ravi.kumar.ee@email.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">ravi.kumar.ee@email.com</div>
+          </div>
+        </a>
+        <a href="#" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">linkedin.com/in/ravikumar-ee</div>
+          </div>
+        </a>
+        <a href="#" class="contact-link">
+          <div class="contact-link-icon">🔬</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">IEEE Profile</div>
+            <div class="contact-link-val">ieeexplore.ieee.org/author/ravi-kumar</div>
+          </div>
+        </a>
+        <a href="tel:+919876543210" class="contact-link">
+          <div class="contact-link-icon">📱</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-val">+91 98765 43210</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form-side fade-in">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" placeholder="John Recruiter">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="hr@company.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company / Organisation</label>
+        <input type="text" class="form-input" placeholder="Acme Technologies Pvt. Ltd.">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Hi Ravi, I'd love to discuss an opportunity at..."></textarea>
+      </div>
+      <button class="form-submit">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Ravi Kumar</div>
+  <div class="footer-note">
+    Demo portfolio created by <a href="#">Oraze United Corporation LLP</a><br>
+    Your professional digital identity, designed for impact.
+  </div>
+  <a href="#" class="footer-scroll" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
+</footer>
+
+<script>
+  // Scroll Progress Bar
+  window.addEventListener('scroll', () => {
+    const total = document.body.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / total) * 100;
+    document.getElementById('scrollBar').style.width = progress + '%';
+  });
+
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (i % 4));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Stagger timeline items
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.15}s`;
+  });
+</script>
+</body>
+</html>
